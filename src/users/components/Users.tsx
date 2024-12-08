@@ -1,25 +1,30 @@
-
-import { Stack, TextField } from '@mui/material'
+import { Stack, TextField, Typography } from '@mui/material'
 import { useFormContext } from 'react-hook-form';
 import { UserSchema } from '../types/schemas';
 import RHFAutocomplete from '../../components/RHFAutocomplete';
+import { useGenders, useLanguages, useSkills, useStates } from '../services/queries';
+import RHFToggleButtonGroup from '../../components/RHFToggleButtonGroup';
+import RHFRadioGroup from '../../components/RHFRadioGroup';
+import RHFCheckbox from '../../components/RHFCheckbox';
 import { useEffect } from 'react';
-
-const states = [
-  { id: "1", label: "California" },
-  { id: "2", label: "Texas" },
-  { id: "3", label: "New Jersey" },
-];
+import RHFDateTimePicker from '../../components/RHFDateTimePicker';
+import RHFDateRangePicker from '../../components/RHFDateRangerPicker';
 
 const Users = () => {
-  const { register, watch, formState: { errors }} = useFormContext<UserSchema>();
+  const { watch, register, formState: { errors }} = useFormContext<UserSchema>();
+
+  const statesQuery = useStates();
+  const languagesQuery = useLanguages();
+  const genderQuery = useGenders();
+  const skills = useSkills();
 
   useEffect(() => {
-    const sub = watch((value) => {
-      console.log(value)
-    });
-    return () => sub.unsubscribe();
-  }, [watch])
+		const sub = watch((value) => {
+			console.log(value);
+		});
+
+		return () => sub.unsubscribe();
+	}, [watch]);
 
   return(
     <Stack sx={{ gap: 2 }}>
@@ -35,7 +40,31 @@ const Users = () => {
        error={!!errors.email}
        helperText={errors.email?.message}
       />
-      <RHFAutocomplete<UserSchema> name="states" label="States" options={states}/>
+      <RHFAutocomplete<UserSchema>
+       name="states"
+       label="States"
+       options={statesQuery.data}
+      />
+      <RHFToggleButtonGroup<UserSchema>
+       name="languagesSpoken"
+       options={languagesQuery.data}
+      />
+      <RHFRadioGroup<UserSchema>
+        name="gender"
+        label='Gender'
+        options={genderQuery.data}
+      />
+      <RHFCheckbox<UserSchema>
+        name="skills"
+        label='Skills'
+        options={skills.data}
+      />
+      <RHFDateTimePicker<UserSchema>
+        name="registrationDateAndTime"
+        label="Registration Date & Time"
+      />
+      <Typography>Former Employment Period:</Typography>
+      <RHFDateRangePicker<UserSchema> name="formetEmploymentPeriod"/>
     </Stack>
   );
 }
