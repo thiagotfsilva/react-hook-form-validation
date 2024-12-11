@@ -15,7 +15,7 @@ import RHFTextField from '../../components/RHFTextField';
 
 const Users = () => {
   const {
-    watch,
+    //watch,
     control,
     unregister,
     reset,
@@ -30,15 +30,15 @@ const Users = () => {
 
   const id = useWatch({ control, name: 'id' });
 
-  const userQuery = useUser(id)
+  const userQuery = useUser(id);
 
-  useEffect(() => {
+ /*  useEffect(() => {
 		const sub = watch((value) => {
 			console.log(value);
 		});
 
 		return () => sub.unsubscribe();
-	}, [watch]);
+	}, [watch]); */
 
   const isTeacher = useWatch({ control, name: "isTeacher"})
 
@@ -47,6 +47,10 @@ const Users = () => {
     name: 'students',
   })
 
+  const handleUserClick = (id: string) => {
+    setValue('id', id)
+  }
+
   useEffect(() => {
     if(!isTeacher) {
       replace([])
@@ -54,13 +58,15 @@ const Users = () => {
     }
   }, [isTeacher, replace, unregister])
 
+  useEffect(() => {
+    if (userQuery.data) {
+      reset(userQuery.data)
+    }
+  }, [userQuery.data, reset])
+
   const handleReset = () => {
     reset(defaultValues)
   };
-
-  const handleUserClick = (id: string) => {
-    setValue('id', id)
-  }
 
   return(
     <Container maxWidth="sm" component="form">
@@ -69,8 +75,8 @@ const Users = () => {
           {usersQuery.data?.map((user) => (
             <ListItem disablePadding key={user.id}>
               <ListItemButton
-              onClick={() => handleUserClick(user.id)}
-              selected={id === user.id}
+                onClick={() => handleUserClick(user.id)}
+                selected={id === user.id}
               >
                 <ListItemText primary={user.label} />
               </ListItemButton>
