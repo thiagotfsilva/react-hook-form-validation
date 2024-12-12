@@ -7,7 +7,7 @@ type Edit = {
   id: string;
 };
 
-type Common = {
+export type ApiCommon = {
   email: string;
   name: string;
   states: string[];
@@ -18,10 +18,10 @@ type Common = {
   formetEmploymentPeriod: [string, string];
   salaryRange: [number, number];
   isTeacher: boolean;
-  stundents: {
+  students: {
     name: string;
   }[];
 };
 
-export type ApiCreateEdit = Common & (Create | Edit);
-export type ApiGet = Edit & Common;
+export type ApiCreateEdit = ApiCommon & (Create | Edit);
+export type ApiGet = Edit & ApiCommon;

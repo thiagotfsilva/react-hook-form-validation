@@ -57,58 +57,21 @@
   ],
   "users": [
     {
-      "email": "james@gmail.com",
-      "formerEmploymentPeriod": [
-        "Thu Jan 18 2024 01:06:58 GMT+0330 (Iran Standard Time)",
-        "Thu Jan 18 2024 01:06:58 GMT+0330 (Iran Standard Time)"
+      "name": "Thiago",
+      "email": "thiago@email.com",
+      "formetEmploymentPeriod": [
+        "Thu Dec 12 2024 11:21:43 GMT-0300 (Horário Padrão de Brasília)",
+        "Thu Dec 12 2024 11:21:43 GMT-0300 (Horário Padrão de Brasília)"
       ],
-      "name": "David",
       "gender": "1",
       "languagesSpoken": [
         "1",
         "2"
       ],
-      "registrationDateAndTime": "Thu Jan 18 2024 01:06:58 GMT+0330 (Iran Standard Time)",
+      "registrationDateAndTime": "Thu Dec 12 2024 11:21:43 GMT-0300 (Horário Padrão de Brasília)",
       "salaryRange": [
-        0,
-        2000
-      ],
-      "skills": [
-        "1",
-        "2"
-      ],
-      "states": [
-        "1",
-        "2"
-      ],
-      "isTeacher": true,
-      "students": [
-        {
-          "name": "1111"
-        },
-        {
-          "name": "2222"
-        }
-      ],
-      "id": 1
-    },
-    {
-      "email": "Robert@gmail.com",
-      "formerEmploymentPeriod": [
-        "Wed Aug 09 2023 00:00:00 GMT+0330 (Iran Standard Time)",
-        "Thu Jan 18 2024 01:20:23 GMT+0330 (Iran Standard Time)"
-      ],
-      "name": "Robert",
-      "gender": "2",
-      "languagesSpoken": [
-        "1",
-        "2",
-        "3"
-      ],
-      "registrationDateAndTime": "Wed Jan 07 1981 04:40:23 GMT+0330 (Iran Standard Time)",
-      "salaryRange": [
-        67,
-        87
+        26,
+        80
       ],
       "skills": [
         "1",
@@ -120,48 +83,79 @@
       "isTeacher": true,
       "students": [
         {
-          "name": "fsdfdsf"
-        },
-        {
-          "name": "sdfsfsf"
-        },
-        {
-          "name": "sfdsfsf"
+          "name": "jahsjashajsa"
         }
       ],
-      "id": 2
+      "id": ":r1:"
     },
     {
-      "email": "john@gmail.com",
-      "formerEmploymentPeriod": [
-        "Sat Jan 20 2024 18:12:01 GMT+0330 (Iran Standard Time)",
-        "Sat Jan 20 2024 18:12:01 GMT+0330 (Iran Standard Time)"
+      "id": ":r123:",
+      "name": "Carlos",
+      "email": "carlos@email.com",
+      "states": [
+        "2"
       ],
-      "name": "John",
+      "languagesSpoken": [
+        "1",
+        "3",
+        "2"
+      ],
+      "gender": "1",
+      "skills": [
+        "4",
+        "3"
+      ],
+      "registrationDateAndTime": "2024-12-12T14:24:59.525Z",
+      "formetEmploymentPeriod": [
+        "2024-12-12T14:24:59.525Z",
+        "2024-12-12T14:24:59.525Z"
+      ],
+      "salaryRange": [
+        12,
+        92
+      ],
+      "isTeacher": true,
+      "variant": "create",
+      "students": [
+        {
+          "name": "asasasa"
+        }
+      ]
+    },
+    {
+      "id": "2143",
+      "name": "Marcos",
+      "email": "marcos@email.com",
+      "formetEmploymentPeriod": [
+        "Thu Dec 12 2024 16:51:38 GMT-0300 (Horário Padrão de Brasília)",
+        "Thu Dec 12 2024 16:51:38 GMT-0300 (Horário Padrão de Brasília)"
+      ],
       "gender": "1",
       "languagesSpoken": [
         "1",
         "2"
       ],
-      "registrationDateAndTime": "Sat Jan 20 2024 18:12:01 GMT+0330 (Iran Standard Time)",
+      "registrationDateAndTime": "Tue Dec 24 2024 16:51:38 GMT-0300 (Horário Padrão de Brasília)",
       "salaryRange": [
-        0,
-        2000
+        6,
+        92
       ],
       "skills": [
-        "1",
-        "2"
-      ],
-      "states": [
         "1"
       ],
+      "states": [
+        "1",
+        "2"
+      ],
       "isTeacher": true,
       "students": [
         {
-          "name": "sdsd"
+          "name": "um estudante"
+        },
+        {
+          "name": "dois estudantes"
         }
-      ],
-      "id": 3
+      ]
     }
   ]
 }

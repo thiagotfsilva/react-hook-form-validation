@@ -66,7 +66,6 @@ export function useUser(id: string) {
 				`http://localhost:3000/users/${id}`
 			);
 
-      console.log(data, 'data')
 			return {
 				variant: 'edit',
 				id: data.id,
@@ -82,7 +81,7 @@ export function useUser(id: string) {
 				salaryRange: [data.salaryRange[0], data.salaryRange[1]],
 				skills: data.skills,
 				states: data.states,
-				students: data.stundents,
+				students: data.students,
 				isTeacher: data.isTeacher,
 			};
 		},

@@ -1,5 +1,5 @@
 import { Button, Container, List, ListItem, ListItemButton, ListItemText, ListSubheader, Stack, Typography } from '@mui/material'
-import { useFieldArray, useFormContext, useWatch } from 'react-hook-form';
+import { SubmitHandler, useFieldArray, useFormContext, useWatch } from 'react-hook-form';
 import { defaultValues, UserSchema } from '../types/schemas';
 import RHFAutocomplete from '../../components/RHFAutocomplete';
 import { useGenders, useLanguages, useSkills, useStates, useUser, useUsers } from '../services/queries';
@@ -12,6 +12,7 @@ import RHFDateRangePicker from '../../components/RHFDateRangerPicker';
 import RHFSlider from '../../components/RHFSlider';
 import RHFSwitch from '../../components/RHFSwitch';
 import RHFTextField from '../../components/RHFTextField';
+import { useCreateUser, useEditUser } from '../services/mutations';
 
 const Users = () => {
   const {
@@ -20,6 +21,7 @@ const Users = () => {
     unregister,
     reset,
     setValue,
+    handleSubmit
   } = useFormContext<UserSchema>();
 
   const statesQuery = useStates();
@@ -40,7 +42,9 @@ const Users = () => {
 		return () => sub.unsubscribe();
 	}, [watch]); */
 
-  const isTeacher = useWatch({ control, name: "isTeacher"})
+  const isTeacher = useWatch({ control, name: "isTeacher"});
+
+  const variant = useWatch({ control, name: "variant"})
 
   const { append, fields, remove, replace } = useFieldArray({
     control,
@@ -68,8 +72,28 @@ const Users = () => {
     reset(defaultValues)
   };
 
+  function generateId(): string {
+    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  }
+
+  const createUserMutation = useCreateUser();
+  const editUserMutation = useEditUser()
+  const userId = generateId();
+
+  const onSubmit: SubmitHandler<UserSchema> = (data) => {
+    if (variant === 'create') {
+      const user = {
+        id: userId,
+        ...data
+      }
+      createUserMutation.mutate(user)
+    } else {
+      editUserMutation.mutate(data)
+    }
+  }
+
   return(
-    <Container maxWidth="sm" component="form">
+    <Container maxWidth="sm" component="form" onSubmit={handleSubmit(onSubmit)}>
       <Stack sx={{ flexDirection: 'row', gap: 2 }}>
         <List subheader={<ListSubheader>Users</ListSubheader>}>
           {usersQuery.data?.map((user) => (
@@ -113,13 +137,11 @@ const Users = () => {
           <RHFDateRangePicker<UserSchema> name="formetEmploymentPeriod"/>
           <RHFSlider<UserSchema> name='salaryRange' label='Salary Range' />
           <RHFSwitch<UserSchema> name="isTeacher" label='Are you a teacher?' />
-
           {isTeacher && (
             <Button onClick={() => append({ name: '' })} type='button'>
               Add new student
             </Button>
           )}
-
           {fields.map((field, index) =>(
             <Fragment key={field.id}>
               <RHFTextField
@@ -133,7 +155,7 @@ const Users = () => {
             </Fragment>
           ))}
           <Stack sx={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Button type='submit'>New User</Button>
+            <Button variant='contained' type='submit'>{variant === "create" ? 'New user' : 'Edit user'}</Button>
             <Button onClick={handleReset}>Reset</Button>
           </Stack>
         </Stack>
